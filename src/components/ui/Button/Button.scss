@@ -1,0 +1,37 @@
+@use "../../../styles/helpers" as *;
+
+.button {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  border: none;
+  border-radius: 28px;
+  color: $color-white;
+  padding: 16px;
+  transition: background-color $transition-300, color $transition-300;
+
+  &--primary {
+    background-color: $color-button-blue;
+    width: 318px;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-black;
+    }
+
+    &:disabled {
+      background-color: $color-button-fiord;
+      color: $color-white-50;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-cape-cod;
+    width: 183px;
+
+    &:disabled {
+      background-color: $color-button-grey;
+      color: $color-white-50;
+    }
+  }
+}

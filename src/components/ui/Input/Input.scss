@@ -1,3 +1,44 @@
-.input-wrapper__input {
-  color: $color-black;
+@use "../../../styles/helpers" as *;
+
+.input-wrapper {
+
+  &:hover,
+  &:focus-within {
+    .input-wrapper__icon {
+      color: $color-melrose;
+    }
+
+    .input-wrapper__input {
+      border-color: $color-melrose;
+      outline: none;
+    }
+  }
+
+  &__input {
+
+    color: $color-white;
+    background-color: var(--color-background-primary);
+    padding: 16px;
+    padding-left: 52px;
+    border: 1px solid $color-cape-cod;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 24px;
+    transition: border-color $transition-300;
+    outline: none;
+
+    &::placeholder {
+      color: $color-white-50;
+    }
+  }
+
+  &--error {
+    .input-wrapper__icon {
+      color: $color-bittersweet;
+    }
+
+    .input-wrapper__input {
+      border-color: $color-bittersweet;
+    }
+  }
 }
