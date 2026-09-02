@@ -1,10 +1,21 @@
 import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
 import { MovieCard } from "@/components/MovieHero/MovieHero";
+import { Header } from "@/components/Header/Header";
 
 export default function Home() {
   return (
     <div className="app">
+      <Header />
+      <MovieCard
+        rate={7.5}
+        year={1979}
+        genre="Детектив"
+        duration={67}
+        title="Шерлок Холмс и доктор Ватсон: Знакомство"
+        description="Увлекательные приключения самого известного сыщика всех времен"
+        posterUrl="/images/movie.jpg"
+      />
       <Input placeholder="Поиск" />
 
       <Input placeholder="Имя" />
@@ -26,15 +37,6 @@ export default function Home() {
       <Button variant="secondary" disabled>
         Secondary disabled
       </Button>
-      <MovieCard
-        rate={7.5}
-        year={1979}
-        genre="Детектив"
-        duration={67}
-        title="Шерлок Холмс и доктор Ватсон: Знакомство"
-        description="Увлекательные приключения самого известного сыщика всех времен"
-        posterUrl="/images/movie.jpg"
-      />
     </div>
   );
 }

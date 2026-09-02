@@ -1,0 +1,116 @@
+@use "../../styles/helpers" as *;
+
+.header {
+  padding-bottom: 32px;
+
+  &__content {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__box {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__logo {
+    @include vp-767 {
+      width: 80px;
+      height: 18px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  &__link,
+  &__account {
+    font-size: 24px;
+    line-height: 32px;
+    color: $color-white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: relative;
+    transition: color $transition-300;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-melrose;
+    }
+
+    &--active {
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        left: 0;
+
+        height: 2px;
+
+        background-color: $color-heliotrope;
+      }
+    }
+
+    @media (max-width: 1250px) {
+      display: none;
+    }
+  }
+
+  &__input {
+    width: 655px;
+  }
+
+  &__list {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 1250px) {
+      display: flex;
+    }
+  }
+
+  &__anchor {
+    display: block;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    color: $color-white;
+    padding: 0;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      fill-opacity: 1;
+    }
+
+    &--button {
+      display: none;
+
+      @media (max-width: 1100px) {
+        display: block;
+      }
+    }
+  }
+}
+
+.input-wrapper {
+
+  svg {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
+}

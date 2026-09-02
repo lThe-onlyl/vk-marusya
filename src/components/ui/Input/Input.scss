@@ -1,6 +1,7 @@
 @use "../../../styles/helpers" as *;
 
 .input-wrapper {
+  position: relative;
 
   &:hover,
   &:focus-within {
@@ -12,6 +13,16 @@
       border-color: $color-melrose;
       outline: none;
     }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    height: 24px;
+    transform: translateY(-50%);
+    color: $color-white;
+    transition: color $transition-300;
   }
 
   &__input {
