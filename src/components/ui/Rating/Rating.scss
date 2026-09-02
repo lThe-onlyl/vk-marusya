@@ -1,0 +1,34 @@
+@use "../../../styles/helpers" as *;
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 24px;
+  color: $color-white;
+
+  &__icon {
+    fill: currentColor;
+  }
+
+  &--excellent {
+    background-color: $color-rate-yellow;
+  }
+
+  &--good {
+    background-color: $color-rate-green;
+  }
+
+  &--average {
+    background-color: $color-rate-grey;
+  }
+
+  &--bad {
+    background-color: $color-rate-red;
+  }
+}

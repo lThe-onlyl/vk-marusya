@@ -1,37 +1,56 @@
 @use "../../../styles/helpers" as *;
 
 .button {
+  padding: 16px;
+  border: none;
+  border-radius: 28px;
+  outline: none;
+  width: 100%;
+
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;
-  border: none;
-  border-radius: 28px;
   color: $color-white;
-  padding: 16px;
-  transition: background-color $transition-300, color $transition-300;
+
+  cursor: pointer;
+
+  path {
+    fill: currentColor;
+  }
+
+  transition: background-color $transition-300,
+  color $transition-300;
+
+  &:disabled {
+    cursor: default;
+  }
 
   &--primary {
     background-color: $color-button-blue;
-    width: 318px;
 
-    &:hover {
-      background-color: $color-white;
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
       color: $color-black;
+      background-color: $color-white;
     }
 
     &:disabled {
-      background-color: $color-button-fiord;
       color: $color-white-50;
+      background-color: $color-button-fiord;
     }
   }
 
   &--secondary {
     background-color: $color-cape-cod;
-    width: 183px;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      color: $color-melrose;
+    }
 
     &:disabled {
-      background-color: $color-button-grey;
       color: $color-white-50;
+      background-color: $color-button-grey;
     }
   }
 }

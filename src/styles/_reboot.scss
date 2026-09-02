@@ -1,3 +1,5 @@
+@use "./helpers" as *;
+
 *,
 *::after,
 *::before {
@@ -12,9 +14,8 @@ body {
   padding: 0;
   font-size: 16px;
   line-height: 24px;
-  // font-family: $ff-main;
-  // color: $color-jaguar;
-  // background-color: $color-deep-teal;
+  background: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%), linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
+  font-family: $ff-main;
 }
 
 main {

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button/Button";
-import styles from "./page.module.css";
 import { Input } from "@/components/ui/Input/Input";
+import { MovieCard } from "@/components/MovieHero/MovieHero";
 
 export default function Home() {
   return (
@@ -26,6 +26,15 @@ export default function Home() {
       <Button variant="secondary" disabled>
         Secondary disabled
       </Button>
+      <MovieCard
+        rate={7.5}
+        year={1979}
+        genre="Детектив"
+        duration={67}
+        title="Шерлок Холмс и доктор Ватсон: Знакомство"
+        description="Увлекательные приключения самого известного сыщика всех времен"
+        posterUrl="/images/movie.jpg"
+      />
     </div>
   );
 }
