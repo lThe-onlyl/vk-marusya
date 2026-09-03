@@ -15,7 +15,7 @@ interface MovieProps {
   posterUrl: string;
 }
 
-export function MovieCard({
+export function MovieHero({
   rate,
   year,
   genre,
@@ -25,47 +25,47 @@ export function MovieCard({
   posterUrl,
 }: MovieProps) {
   return (
-    <section className="movie-card">
+    <section className="movie-hero">
       <div className="container">
-        <div className="movie-card__wrapper">
-          <div className="movie-card__content">
-            <div className="movie-card__box">
+        <div className="movie-hero__wrapper">
+          <div className="movie-hero__content">
+            <div className="movie-hero__box">
               <Rating value={rate} />
 
-              <span className="movie-card__span">{year}</span>
+              <span className="movie-hero__span">{year}</span>
 
-              <span className="movie-card__span">{genre}</span>
+              <span className="movie-hero__span">{genre}</span>
 
-              <span className="movie-card__span">
+              <span className="movie-hero__span">
                 {formatRuntime(duration)}
               </span>
             </div>
 
-            <h1 className="movie-card__title">{title}</h1>
+            <h1 className="movie-hero__title">{title}</h1>
 
-            <div className="movie-card__descr">{description}</div>
+            <div className="movie-hero__descr">{description}</div>
 
-            <div className="movie-card__box">
+            <div className="movie-hero__box">
               <Button
                 variant="primary"
-                className="movie-card__button movie-card__button--trailer"
+                className="movie-hero__button movie-hero__button--trailer"
               >
                 Трейлер
               </Button>
 
               <Button
                 variant="secondary"
-                className="movie-card__button movie-card__button--about"
+                className="movie-hero__button movie-hero__button--about"
               >
                 О фильме
               </Button>
 
-              <Button variant="secondary" className="movie-card__button">
-                <Icon name="icon-heart" className="movie-card__icon" />
+              <Button variant="secondary" className="movie-hero__button">
+                <Icon name="icon-heart" className="movie-hero__icon" />
               </Button>
 
-              <Button variant="secondary" className="movie-card__button">
-                <Icon name="icon-reboot" className="movie-card__icon" />
+              <Button variant="secondary" className="movie-hero__button">
+                <Icon name="icon-reboot" className="movie-hero__icon" />
               </Button>
             </div>
           </div>
@@ -73,7 +73,7 @@ export function MovieCard({
           <Image
             src={posterUrl}
             alt={`Постер фильма «${title}»`}
-            className="movie-card__img"
+            className="movie-hero__img"
             width={680}
             height={552}
           />

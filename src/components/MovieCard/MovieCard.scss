@@ -1,0 +1,63 @@
+@use "../../styles/helpers" as *;
+
+.movie-card {
+  position: relative;
+  box-shadow: 0 0 80px 0 #ffffff54;
+  border-radius: 16px;
+  flex: 0 0 224px;
+  height: 336px;
+  box-sizing: border-box;
+  overflow: visible;
+
+  @media (max-width: 550px) {
+    box-shadow: none;
+    flex: 0 0 236px;
+    height: 348px;
+    padding: 12px 0 0 12px;
+  }
+
+  &__rank {
+    padding: 8px 24px;
+    background-color: $color-white;
+    border-radius: 50px;
+    position: absolute;
+    left: -12px;
+    top: -12px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: $color-melrose;
+
+    @media (max-width: 550px) {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__remove {
+    display: flex;
+    padding: 8px;
+    background-color: $color-white;
+    border-radius: 30px;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    opacity: 0;
+    color: $color-black;
+    transition: color $transition-300, opacity $transition-300;
+
+    &:hover {
+      color: $color-melrose;
+    }
+  }
+
+  &:hover &__remove,
+  &:focus-within &__remove {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__img {
+    border-radius: 16px;
+  }
+}
