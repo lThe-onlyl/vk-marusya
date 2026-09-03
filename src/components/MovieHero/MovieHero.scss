@@ -7,10 +7,26 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    @media (max-width: 1300px) {
+      align-items: start;
+    }
+
+    @include vp-1023 {
+      flex-direction: column-reverse;
+    }
   }
 
   &__content {
     max-width: 600px;
+
+    @media (max-width: 1300px) {
+      max-width: 410px;
+    }
+
+    @include vp-1023 {
+      max-width: fit-content;
+    }
   }
 
   &__box {
@@ -18,6 +34,10 @@
     gap: 16px;
     align-items: center;
     margin-bottom: 16px;
+
+    @media (max-width: 1300px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__span {
@@ -33,6 +53,11 @@
     font-weight: 700;
     font-size: 48px;
     line-height: 56px;
+
+    @media (max-width: 1150px) {
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
 
   &__descr {
@@ -41,10 +66,24 @@
     font-size: 24px;
     line-height: 32px;
     color: $color-white-70;
+
+    @media (max-width: 1150px) {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    @media (max-width: 600px) {
+      margin-bottom: 32px;
+    }
   }
 
   &__img {
-    border-radius: 16px;
+    border-radius: 36px;
+
+    @include vp-1023 {
+      margin-bottom: 24px;
+      width: 100%;
+    }
   }
 
   &__button {
@@ -52,10 +91,30 @@
 
     &--trailer {
       width: 171px;
+
+      @media (max-width: 1300px) {
+        width: 95%;
+      }
+
+      @include vp-1023 {
+        width: 180px;
+      }
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
 
     &--about {
       width: 183px;
+
+      @media (max-width: 1300px) {
+        width: 95%;
+      }
+
+      @include vp-1023 {
+        width: 167px;
+      }
     }
   }
 }
