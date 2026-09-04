@@ -1,7 +1,5 @@
 import { MovieHero } from "@/components/MovieHero/MovieHero";
-import { Header } from "@/components/Header/Header";
 import { MovieList } from "@/components/MovieList/MovieList";
-import { Footer } from "@/components/Footer/Footer";
 
 const mockMovies = [
   {
@@ -58,21 +56,18 @@ const mockMovies = [
 
 export default function Home() {
   return (
-    <div className="app">
-      <Header />
-      <main className="main">
-        <MovieHero
-          rate={7.5}
-          year={1979}
-          genre="Детектив"
-          duration={67}
-          title="Шерлок Холмс и доктор Ватсон: Знакомство"
-          description="Увлекательные приключения самого известного сыщика всех времен"
-          posterUrl="/images/movie.jpg"
-        />
-        <MovieList title="Топ 10 фильмов" list={mockMovies} showRank />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <MovieHero
+        rate={7.5}
+        year={1979}
+        genre="Детектив"
+        duration={67}
+        title="Шерлок Холмс и доктор Ватсон: Знакомство"
+        description="Увлекательные приключения самого известного сыщика всех времен"
+        posterUrl="/images/movie.jpg"
+      />
+
+      <MovieList title="Топ 10 фильмов" list={mockMovies} showRank />
+    </>
   );
 }
