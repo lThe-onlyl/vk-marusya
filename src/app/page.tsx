@@ -1,73 +1,22 @@
+import { getRandomMovie } from "@/api/movies";
 import { MovieHero } from "@/components/MovieHero/MovieHero";
-import { MovieList } from "@/components/MovieList/MovieList";
 
-const mockMovies = [
-  {
-    id: 1,
-    title: "Побег из Шоушенка",
-    posterUrl: "/test/movie-1.png",
-  },
-  {
-    id: 2,
-    title: "Крёстный отец",
-    posterUrl: "/test/movie-2.png",
-  },
-  {
-    id: 3,
-    title: "Тёмный рыцарь",
-    posterUrl: "/test/movie-3.png",
-  },
-  {
-    id: 4,
-    title: "Криминальное чтиво",
-    posterUrl: "/test/movie-4.png",
-  },
-  {
-    id: 5,
-    title: "Форрест Гамп",
-    posterUrl: "/test/movie-5.png",
-  },
-  {
-    id: 6,
-    title: "Побег из Шоушенка",
-    posterUrl: "/test/movie-1.png",
-  },
-  {
-    id: 7,
-    title: "Крёстный отец",
-    posterUrl: "/test/movie-2.png",
-  },
-  {
-    id: 8,
-    title: "Тёмный рыцарь",
-    posterUrl: "/test/movie-3.png",
-  },
-  {
-    id: 9,
-    title: "Криминальное чтиво",
-    posterUrl: "/test/movie-4.png",
-  },
-  {
-    id: 10,
-    title: "Форрест Гамп",
-    posterUrl: "/test/movie-5.png",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const movie = await getRandomMovie();
+  console.log(movie);
   return (
     <>
       <MovieHero
-        rate={7.5}
-        year={1979}
-        genre="Детектив"
-        duration={67}
-        title="Шерлок Холмс и доктор Ватсон: Знакомство"
-        description="Увлекательные приключения самого известного сыщика всех времен"
-        posterUrl="/images/movie.jpg"
+        rate={movie.tmdbRating}
+        year={movie.releaseYear}
+        genre={movie.genres[0]}
+        duration={movie.runtime}
+        title={movie.title}
+        description={movie.plot}
+        posterUrl={movie.backdropUrl}
       />
-
-      <MovieList title="Топ 10 фильмов" list={mockMovies} showRank />
     </>
   );
 }

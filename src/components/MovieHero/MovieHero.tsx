@@ -71,11 +71,11 @@ export function MovieHero({
           </div>
 
           <Image
-            src={posterUrl}
+            src={posterUrl || "/images/movie-placeholder.jpg"}
             alt={`Постер фильма «${title}»`}
-            className="movie-hero__img"
             width={680}
             height={552}
+            className="movie-hero__img"
           />
         </div>
       </div>
