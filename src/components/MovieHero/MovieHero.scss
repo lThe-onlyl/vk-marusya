@@ -72,7 +72,7 @@
       line-height: 24px;
     }
 
-    @media (max-width: 600px) {
+    @include vp-1023 {
       margin-bottom: 32px;
     }
   }

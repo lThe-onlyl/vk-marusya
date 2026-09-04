@@ -1,0 +1,43 @@
+@use "../../styles/helpers" as *;
+
+.footer {
+  padding: 42px 0;
+
+  &__socials {
+    list-style: none;
+    justify-self: end;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+
+    @media (max-width: 600px) {
+      justify-self: start;
+    }
+  }
+
+  &__social {
+    width: 36px;
+    height: 36px;
+    outline: none;
+  }
+
+  &__link {
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color $transition-300, border-color $transition-300;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $color-melrose;
+      color: $color-melrose;
+    }
+  }
+}

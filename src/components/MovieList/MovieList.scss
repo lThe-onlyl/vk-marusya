@@ -17,11 +17,17 @@
   }
 
   &__list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 40px;
     flex-wrap: wrap;
 
-    @media (max-width: 550px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (max-width: 1340px) {
+      display: flex;
       flex-wrap: nowrap;
       overflow-x: scroll;
     }
