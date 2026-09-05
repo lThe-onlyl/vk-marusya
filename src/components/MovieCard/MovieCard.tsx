@@ -20,8 +20,8 @@ export function MovieCard({
       {rank !== undefined && <span className="movie-card__rank">{rank}</span>}
 
       <Image
-        src={posterUrl}
-        alt={`Постер из фильма ${title}`}
+        src={posterUrl || "/images/poster.png"}
+        alt={posterUrl ? `Постер фильма «${title}»` : "Постер отсутствует"}
         width={224}
         height={336}
         className="movie-card__img"

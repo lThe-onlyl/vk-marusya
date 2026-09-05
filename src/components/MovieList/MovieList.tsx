@@ -1,6 +1,6 @@
 import { MovieCard } from "../MovieCard/MovieCard";
 import "./MovieList.scss";
-import { Movie } from "../../types/movie";
+import { Movie } from "@/types/Movie";
 
 interface MovieListProps {
   title?: string;
