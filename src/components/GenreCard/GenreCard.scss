@@ -3,11 +3,34 @@
 .genre-card {
   border-radius: 24px;
   overflow: hidden;
-  width: 290px;
   box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
+  max-width: 290px;
+
+  @media (max-width: 1350px) {
+    width: 100%;
+    max-width: 100%;
+  }
 
   &__img {
     height: 220px;
+
+    @media (max-width: 1350px) {
+      width: 100%;
+      object-fit: cover;
+      height: 300px;
+    }
+
+    @include vp-1023 {
+      height: 220px;
+    }
+
+    @media (max-width: 680px) {
+      height: 300px;
+    }
+
+    @media (max-width: 500px) {
+      height: 220px;
+    }
   }
 
   &__name {

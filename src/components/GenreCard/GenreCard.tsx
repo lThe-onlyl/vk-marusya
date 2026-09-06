@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import "./GenreCard.scss";
 
 interface GenreCardProps {
@@ -8,16 +9,16 @@ interface GenreCardProps {
 
 export function GenreCard({ title, name }: GenreCardProps) {
   return (
-    <article className="genre-card">
+    <Link href={`/genres/${name}`} className="genre-card">
       <Image
         src={`/images/genres/${name}.png`}
-        alt={`Жанр «${title}»`}
+        alt=""
         width={290}
         height={220}
         className="genre-card__img"
       />
 
       <h3 className="genre-card__name">{title}</h3>
-    </article>
+    </Link>
   );
 }

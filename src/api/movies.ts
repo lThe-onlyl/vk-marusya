@@ -23,3 +23,13 @@ export async function getTopMovies(): Promise<Movie[]> {
 
   return response.json();
 }
+
+export async function getGenres(): Promise<string[]> {
+  const response = await fetch(`${API_URL}/movie/genres`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch genres");
+  }
+
+  return response.json();
+}
