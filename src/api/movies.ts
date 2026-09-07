@@ -33,3 +33,23 @@ export async function getGenres(): Promise<string[]> {
 
   return response.json();
 }
+
+export async function getMoviesByGenre(
+  genre: string,
+  page = 1,
+  count = 10,
+): Promise<Movie[]> {
+  const params = new URLSearchParams({
+    genre,
+    page: String(page),
+    count: String(count),
+  });
+
+  const response = await fetch(`${API_URL}/movie?${params}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies by genre");
+  }
+
+  return response.json();
+}

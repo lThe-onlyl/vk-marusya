@@ -1,4 +1,4 @@
-import { getRandomMovie, getTopMovies } from "@/api/Movies";
+import { getRandomMovie, getTopMovies } from "@/api/movies";
 import { MovieHero } from "@/components/MovieHero/MovieHero";
 import { MovieList } from "@/components/MovieList/MovieList";
 

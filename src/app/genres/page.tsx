@@ -1,4 +1,4 @@
-import { getGenres } from "@/api/Movies";
+import { getGenres } from "@/api/movies";
 import { GenreList } from "@/components/GenreList/GenreList";
 
 export default async function Genres() {

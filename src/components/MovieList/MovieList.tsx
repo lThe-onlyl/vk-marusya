@@ -6,16 +6,30 @@ interface MovieListProps {
   title?: string;
   list: Movie[];
   showRank?: boolean;
+  children?: React.ReactNode;
+  headerAction?: React.ReactNode;
+  variant?: "default" | "genre";
 }
 
-export function MovieList({ title, list, showRank = false }: MovieListProps) {
+export function MovieList({
+  title,
+  list,
+  showRank = false,
+  children,
+  headerAction,
+  variant = "default",
+}: MovieListProps) {
   return (
-    <section className="movie-list">
+    <section className={`movie-list movie-list--${variant}`}>
       <div className="container">
-        <h2 className="movie-list__title">{title}</h2>
+        <div className="movie-list__shell">
+          {headerAction}
+
+          {title && <h2 className="movie-list__title">{title}</h2>}
+        </div>
 
         <div className="movie-list__list">
-          {list.slice(0, 10).map((movie, index) => (
+          {list.map((movie, index) => (
             <MovieCard
               key={movie.id}
               title={movie.title}
@@ -24,6 +38,8 @@ export function MovieList({ title, list, showRank = false }: MovieListProps) {
             />
           ))}
         </div>
+
+        {children}
       </div>
     </section>
   );

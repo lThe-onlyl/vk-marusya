@@ -2,7 +2,7 @@
 
 .movie-list {
   &__title {
-    margin: 0 0 64px;
+    margin: 0;
     padding: 0;
     font-weight: 700;
     font-size: 40px;
@@ -10,9 +10,19 @@
     color: $color-white;
 
     @media (max-width: 550px) {
-      margin-bottom: 28px;
       font-size: 24px;
       line-height: 32px;
+    }
+  }
+
+  &__shell {
+    margin: 0 0 64px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    @media (max-width: 550px) {
+      margin-bottom: 28px;
     }
   }
 
@@ -30,6 +40,88 @@
       display: flex;
       flex-wrap: nowrap;
       overflow-x: scroll;
+    }
+  }
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    padding-top: 64px;
+  }
+
+  button {
+    width: 218px;
+  }
+
+  &__back {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    outline: none;
+
+    &:hover,
+    &:focus-visible {
+      .movie-list__icon {
+        color: $color-melrose;
+      }
+    }
+  }
+
+  &__icon {
+    color: $color-white;
+    transition: color $transition-300;
+  }
+
+  &--genre {
+    .movie-list {
+      &__list {
+        @media (max-width: 1340px) {
+          overflow-x: visible;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        @include vp-1023 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1000px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 520px) {
+          grid-template-columns: 335px;
+          justify-content: center;
+        }
+      }
+    }
+
+    .movie-card {
+      @media (max-width: 1320px) {
+        box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
+        padding: 0;
+      }
+
+      @include vp-1023 {
+        height: 502px;
+      }
+
+      @media (max-width: 750px) {
+        height: 400px;
+      }
+
+      @media (max-width: 620px) {
+        height: 350px;
+      }
+
+      @media (max-width: 520px) {
+        height: 502px;
+      }
+
+      &__img {
+        object-fit: fill;
+      }
     }
   }
 }
