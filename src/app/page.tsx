@@ -1,5 +1,5 @@
 import { getRandomMovie, getTopMovies } from "@/api/movies";
-import { MovieHero } from "@/components/MovieHero/MovieHero";
+import { RandomMovie } from "@/components/RandomMovie/RandomMovie";
 import { MovieList } from "@/components/MovieList/MovieList";
 
 export const dynamic = "force-dynamic";
@@ -7,22 +7,10 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const randomMovie = await getRandomMovie();
   const topMovies = await getTopMovies();
-  console.log(topMovies);
+
   return (
     <>
-      <MovieHero
-        rate={randomMovie.tmdbRating}
-        year={randomMovie.releaseYear}
-        genre={randomMovie.genres[0] ?? ""}
-        duration={randomMovie.runtime}
-        title={randomMovie.title}
-        description={randomMovie.plot}
-        posterUrl={
-          randomMovie.backdropUrl ??
-          randomMovie.posterUrl ??
-          "/images/movie-placeholder.png"
-        }
-      />
+      <RandomMovie initialMovie={randomMovie} />
 
       <MovieList title="Топ 10 фильмов" list={topMovies} showRank />
     </>

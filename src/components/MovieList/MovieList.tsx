@@ -35,6 +35,7 @@ export function MovieList({
               title={movie.title}
               posterUrl={movie.posterUrl}
               rank={showRank ? index + 1 : undefined}
+              movieid={movie.id}
             />
           ))}
         </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/Button/Button";
 import { Icon } from "../ui/IconProps/IconProps";
 import "./MovieHero.scss";
@@ -13,6 +14,8 @@ interface MovieProps {
   title: string;
   description: string;
   posterUrl: string;
+  movieid: number;
+  resetMovie: () => void;
 }
 
 export function MovieHero({
@@ -23,6 +26,8 @@ export function MovieHero({
   title,
   description,
   posterUrl,
+  movieid,
+  resetMovie,
 }: MovieProps) {
   return (
     <section className="movie-hero">
@@ -53,18 +58,22 @@ export function MovieHero({
                 Трейлер
               </Button>
 
-              <Button
-                variant="secondary"
-                className="movie-hero__button movie-hero__button--about"
+              <Link
+                href={`/movie/${movieid}`}
+                className="button button--secondary movie-hero__button movie-hero__button--about"
               >
                 О фильме
-              </Button>
+              </Link>
 
               <Button variant="secondary" className="movie-hero__button">
                 <Icon name="icon-heart" className="movie-hero__icon" />
               </Button>
 
-              <Button variant="secondary" className="movie-hero__button">
+              <Button
+                variant="secondary"
+                className="movie-hero__button"
+                onClick={resetMovie}
+              >
                 <Icon name="icon-reboot" className="movie-hero__icon" />
               </Button>
             </div>
