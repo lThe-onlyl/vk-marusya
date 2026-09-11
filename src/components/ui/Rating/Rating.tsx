@@ -1,10 +1,14 @@
 import "./Rating.scss";
 
 interface RatingProps {
-  value: number;
+  value: number | null | undefined;
 }
 
 export function Rating({ value }: RatingProps) {
+  if (value == null) {
+    return null;
+  }
+
   const getRatingClass = () => {
     if (value >= 8) return "rating--excellent";
     if (value >= 7) return "rating--good";

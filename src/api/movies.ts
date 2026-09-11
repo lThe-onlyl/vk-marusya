@@ -14,6 +14,16 @@ export async function getRandomMovie(): Promise<Movie> {
   return response.json();
 }
 
+export async function getMovie(id: number): Promise<Movie> {
+  const response = await fetch(`${API_URL}/movie/${id}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movie");
+  }
+
+  return response.json();
+}
+
 export async function getTopMovies(): Promise<Movie[]> {
   const response = await fetch(`${API_URL}/movie/top10`);
 

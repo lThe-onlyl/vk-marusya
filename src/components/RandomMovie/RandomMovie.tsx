@@ -40,6 +40,7 @@ export function RandomMovie({ initialMovie }: RandomMovieProps) {
       }
       movieid={movie.id}
       resetMovie={handleResetMovie}
+      showDetailsButton
     />
   );
 }

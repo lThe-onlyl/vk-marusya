@@ -79,10 +79,19 @@
       margin-bottom: 24px;
       width: 100%;
     }
+
+    @media (max-width: 500px) {
+      height: 300px;
+    }
+
+    @media (max-width: 400px) {
+      height: 260px;
+    }
   }
 
   &__button {
     width: 68px;
+    height: 56px;
 
     &--trailer {
       width: 171px;

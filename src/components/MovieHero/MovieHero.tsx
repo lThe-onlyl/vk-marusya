@@ -15,7 +15,8 @@ interface MovieProps {
   description: string;
   posterUrl: string;
   movieid: number;
-  resetMovie: () => void;
+  resetMovie?: () => void;
+  showDetailsButton?: boolean;
 }
 
 export function MovieHero({
@@ -28,6 +29,7 @@ export function MovieHero({
   posterUrl,
   movieid,
   resetMovie,
+  showDetailsButton,
 }: MovieProps) {
   return (
     <section className="movie-hero">
@@ -58,24 +60,28 @@ export function MovieHero({
                 Трейлер
               </Button>
 
-              <Link
-                href={`/movie/${movieid}`}
-                className="button button--secondary movie-hero__button movie-hero__button--about"
-              >
-                О фильме
-              </Link>
+              {showDetailsButton && (
+                <Link
+                  href={`/movie/${movieid}`}
+                  className="button button--secondary movie-hero__button movie-hero__button--about"
+                >
+                  О фильме
+                </Link>
+              )}
 
               <Button variant="secondary" className="movie-hero__button">
                 <Icon name="icon-heart" className="movie-hero__icon" />
               </Button>
 
-              <Button
-                variant="secondary"
-                className="movie-hero__button"
-                onClick={resetMovie}
-              >
-                <Icon name="icon-reboot" className="movie-hero__icon" />
-              </Button>
+              {resetMovie && (
+                <Button
+                  variant="secondary"
+                  className="movie-hero__button"
+                  onClick={resetMovie}
+                >
+                  <Icon name="icon-reboot" className="movie-hero__icon" />
+                </Button>
+              )}
             </div>
           </div>
 
