@@ -1,11 +1,18 @@
 "use client";
 
-import "./Header.scss";
-import Link from "next/link";
+import { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { searchMovies } from "@/api/movies";
+import type { Movie } from "@/types/Movie";
+
 import { Input } from "../ui/Input/Input";
 import { Icon } from "../ui/IconProps/IconProps";
+import { SearchModal } from "../SearchModal/SearchModal";
+
+import "./Header.scss";
 
 interface HeaderProps {
   userLastName?: string;
@@ -13,6 +20,41 @@ interface HeaderProps {
 
 export function Header({ userLastName }: HeaderProps) {
   const pathname = usePathname();
+
+  const [query, setQuery] = useState("");
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const searchQuery = query.trim();
+  const isSearchOpen = searchQuery.length >= 2;
+
+  useEffect(() => {
+    if (searchQuery.length < 2) {
+      return;
+    }
+
+    const timeoutId = setTimeout(async () => {
+      setIsLoading(true);
+
+      try {
+        const result = await searchMovies(searchQuery);
+        setMovies(result);
+      } catch (error) {
+        console.error("Failed to search movies:", error);
+        setMovies([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 400);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchQuery]);
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+  };
 
   return (
     <header className="header">
@@ -41,7 +83,7 @@ export function Header({ userLastName }: HeaderProps) {
 
               <Link
                 className={`header__link ${
-                  pathname === "/genres" ? "header__link--active" : ""
+                  pathname.startsWith("/genres") ? "header__link--active" : ""
                 }`}
                 href="/genres"
               >
@@ -49,11 +91,20 @@ export function Header({ userLastName }: HeaderProps) {
               </Link>
             </nav>
 
-            <Input
-              icon={<Icon name="icon-search" />}
-              className="header__input"
-              name="inputSearch"
-            />
+            <div className="header__search">
+              <Input
+                icon={<Icon name="icon-search" />}
+                className="header__input"
+                name="inputSearch"
+                placeholder="Поиск"
+                value={query}
+                onChange={handleSearchChange}
+              />
+
+              {isSearchOpen && (
+                <SearchModal list={movies} isLoading={isLoading} />
+              )}
+            </div>
           </div>
 
           {userLastName ? (
@@ -66,11 +117,7 @@ export function Header({ userLastName }: HeaderProps) {
               {userLastName}
             </Link>
           ) : (
-            <button
-              className="header__account"
-              type="button"
-              // onClick={openLoginModal}
-            >
+            <button className="header__account" type="button">
               Войти
             </button>
           )}
@@ -79,18 +126,23 @@ export function Header({ userLastName }: HeaderProps) {
             <li className="header__item">
               <Link
                 className={`header__anchor ${
-                  pathname === "/genres" ? "header__link--active" : ""
+                  pathname.startsWith("/genres") ? "header__link--active" : ""
                 }`}
                 href="/genres"
               >
                 <Icon name="icon-genres" />
               </Link>
             </li>
+
             <li className="header__item">
-              <button type="button" className="header__anchor header__anchor--button">
+              <button
+                type="button"
+                className="header__anchor header__anchor--button"
+              >
                 <Icon name="icon-search" />
               </button>
             </li>
+
             <li className="header__item">
               <Link
                 className={`header__anchor ${

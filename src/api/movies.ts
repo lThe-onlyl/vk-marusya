@@ -63,3 +63,18 @@ export async function getMoviesByGenre(
 
   return response.json();
 }
+
+export async function searchMovies(title: string, count = 5): Promise<Movie[]> {
+  const params = new URLSearchParams({
+    title,
+    count: String(count),
+  });
+
+  const response = await fetch(`${API_URL}/movie?${params}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to search movies");
+  }
+
+  return response.json();
+}

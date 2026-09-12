@@ -1,0 +1,18 @@
+@use "../../styles/helpers" as *;
+
+.movie-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+
+  @media (max-width: 1300px) {
+    flex-wrap: wrap;
+  }
+
+  &__span {
+    color: $color-white-70;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

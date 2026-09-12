@@ -1,0 +1,10 @@
+@use "../../styles/helpers" as *;
+
+.search-modal {
+  margin: 12px 0 0 95px;
+  position: absolute;
+  background-color: $color-cape-cod;
+  padding: 8px;
+  width: 559px;
+  border-radius: 8px;
+}

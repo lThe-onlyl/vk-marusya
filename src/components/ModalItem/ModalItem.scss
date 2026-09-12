@@ -1,0 +1,32 @@
+@use "../../styles/helpers" as *;
+
+.modal-item {
+  display: flex;
+  padding: 20px 8px;
+  border-radius: 6px;
+  outline: 1px solid $color-cape-cod;
+  transition: outline $transition-300;
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid $color-white-50;
+  }
+
+  &__img {
+    width: 40px;
+    height: 52px;
+    margin-right: 16px;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+    color: $color-white;
+  }
+
+  &__box {
+    margin-bottom: 8px;
+  }
+}

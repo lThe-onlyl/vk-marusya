@@ -3,8 +3,7 @@ import Link from "next/link";
 import { Button } from "../ui/Button/Button";
 import { Icon } from "../ui/IconProps/IconProps";
 import "./MovieHero.scss";
-import { Rating } from "../ui/Rating/Rating";
-import { formatRuntime } from "@/utils/formatRuntime";
+import { MovieMeta } from "../MovieMeta/MovieMeta";
 
 interface MovieProps {
   rate: number;
@@ -36,17 +35,12 @@ export function MovieHero({
       <div className="container">
         <div className="movie-hero__wrapper">
           <div className="movie-hero__content">
-            <div className="movie-hero__box">
-              <Rating value={rate} />
-
-              <span className="movie-hero__span">{year}</span>
-
-              <span className="movie-hero__span">{genre}</span>
-
-              <span className="movie-hero__span">
-                {formatRuntime(duration)}
-              </span>
-            </div>
+            <MovieMeta
+              rate={rate}
+              year={year}
+              genre={genre}
+              duration={duration}
+            />
 
             <h1 className="movie-hero__title">{title}</h1>
 
