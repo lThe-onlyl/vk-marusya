@@ -2,9 +2,10 @@ import "./Rating.scss";
 
 interface RatingProps {
   value: number | null | undefined;
+  size?: "default" | "small";
 }
 
-export function Rating({ value }: RatingProps) {
+export function Rating({ value, size = "default" }: RatingProps) {
   if (value == null) {
     return null;
   }
@@ -18,7 +19,7 @@ export function Rating({ value }: RatingProps) {
   };
 
   return (
-    <span className={`rating ${getRatingClass()}`}>
+    <span className={`rating ${getRatingClass()} rating--${size}`}>
       <svg className="rating__icon" width="16" height="16" aria-hidden="true">
         <use href="/images/sprite.svg#icon-star" />
       </svg>

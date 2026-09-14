@@ -7,6 +7,12 @@
   outline: 1px solid $color-cape-cod;
   transition: outline $transition-300;
 
+  @media (max-width: 840px) {
+    flex: 0 0 220px;
+    flex-direction: column;
+    max-width: fit-content;
+  }
+
   &:hover,
   &:focus-visible {
     outline: 1px solid $color-white-50;
@@ -16,6 +22,12 @@
     width: 40px;
     height: 52px;
     margin-right: 16px;
+
+    @media (max-width: 840px) {
+      width: 158px;
+      height: 206px;
+      margin-bottom: 16px;
+    }
   }
 
   &__title {
@@ -29,4 +41,7 @@
   &__box {
     margin-bottom: 8px;
   }
+
+
+
 }

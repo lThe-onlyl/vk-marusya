@@ -1,10 +1,33 @@
 @use "../../styles/helpers" as *;
 
 .search-modal {
-  margin: 12px 0 0 95px;
+  top: 67px;
+  right: 0px;
   position: absolute;
   background-color: $color-cape-cod;
   padding: 8px;
   width: 559px;
   border-radius: 8px;
+
+  @media (max-width: 1080px) {
+    left: 0;
+  }
+
+  @media (max-width: 840px) {
+    top: 100px;
+    width: 100%;
+    left: 20px;
+  }
+
+
+  &__box {
+    @media (max-width: 840px) {
+      display: flex;
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
 }

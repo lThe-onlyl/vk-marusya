@@ -7,7 +7,6 @@
   padding: 4px 12px;
   border-radius: 16px;
   font-weight: 700;
-  font-style: Bold;
   font-size: 18px;
   line-height: 24px;
   color: $color-white;
@@ -30,5 +29,10 @@
 
   &--bad {
     background-color: $color-rate-red;
+  }
+
+  &--small {
+    font-size: 12px;
+    line-height: 16px;
   }
 }

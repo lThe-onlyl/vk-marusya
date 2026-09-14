@@ -25,11 +25,14 @@ export function Header({ userLastName }: HeaderProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+
   const searchQuery = query.trim();
-  const isSearchOpen = searchQuery.length >= 2;
+  const hasSearchQuery = searchQuery.length >= 2;
 
   useEffect(() => {
-    if (searchQuery.length < 2) {
+    if (!hasSearchQuery) {
       return;
     }
 
@@ -38,9 +41,11 @@ export function Header({ userLastName }: HeaderProps) {
 
       try {
         const result = await searchMovies(searchQuery);
+
         setMovies(result);
       } catch (error) {
         console.error("Failed to search movies:", error);
+
         setMovies([]);
       } finally {
         setIsLoading(false);
@@ -50,10 +55,26 @@ export function Header({ userLastName }: HeaderProps) {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [searchQuery]);
+  }, [searchQuery, hasSearchQuery]);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
+  };
+
+  const handleSearchBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsSearchActive(false);
+    }
+  };
+
+  const handleOpenMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+  };
+
+  const handleCloseMobileSearch = () => {
+    setIsMobileSearchOpen(false);
+    setQuery("");
+    setMovies([]);
   };
 
   return (
@@ -91,7 +112,12 @@ export function Header({ userLastName }: HeaderProps) {
               </Link>
             </nav>
 
-            <div className="header__search">
+            {/* Desktop search */}
+            <div
+              className="header__search"
+              onFocus={() => setIsSearchActive(true)}
+              onBlur={handleSearchBlur}
+            >
               <Input
                 icon={<Icon name="icon-search" />}
                 className="header__input"
@@ -101,7 +127,7 @@ export function Header({ userLastName }: HeaderProps) {
                 onChange={handleSearchChange}
               />
 
-              {isSearchOpen && (
+              {isSearchActive && hasSearchQuery && (
                 <SearchModal list={movies} isLoading={isLoading} />
               )}
             </div>
@@ -122,6 +148,7 @@ export function Header({ userLastName }: HeaderProps) {
             </button>
           )}
 
+          {/* Mobile navigation */}
           <ul className="header__list">
             <li className="header__item">
               <Link
@@ -138,6 +165,8 @@ export function Header({ userLastName }: HeaderProps) {
               <button
                 type="button"
                 className="header__anchor header__anchor--button"
+                onClick={handleOpenMobileSearch}
+                aria-label="Открыть поиск"
               >
                 <Icon name="icon-search" />
               </button>
@@ -154,6 +183,29 @@ export function Header({ userLastName }: HeaderProps) {
               </Link>
             </li>
           </ul>
+
+          {/* Mobile search */}
+          {isMobileSearchOpen && (
+            <div className="header__overlay" onClick={handleCloseMobileSearch}>
+              <div
+                className="header__shell"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <Input
+                  icon={<Icon name="icon-search" />}
+                  name="mobileSearch"
+                  placeholder="Поиск"
+                  value={query}
+                  onChange={handleSearchChange}
+                  autoFocus
+                />
+
+                {hasSearchQuery && (
+                  <SearchModal list={movies} isLoading={isLoading} />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

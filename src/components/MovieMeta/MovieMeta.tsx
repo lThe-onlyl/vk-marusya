@@ -7,16 +7,33 @@ interface MovieMetaProps {
   year: number | null;
   genre: string;
   duration: number | null;
+  size?: "default" | "small";
 }
 
-export function MovieMeta({ rate, year, genre, duration }: MovieMetaProps) {
+export function MovieMeta({
+  rate,
+  year,
+  genre,
+  duration,
+  size = "default",
+}: MovieMetaProps) {
   return (
     <div className="movie-meta">
-      {rate != null && <Rating value={rate} />}
-      {year != null && <span className="movie-meta__span">{year}</span>}
-      {genre && <span className="movie-meta__span">{genre}</span>}
+      {rate != null && <Rating value={rate} size="small" />}
+      {year != null && (
+        <span className={`movie-meta__span movie-meta__span--${size}`}>
+          {year}
+        </span>
+      )}
+      {genre && (
+        <span className={`movie-meta__span movie-meta__span--${size}`}>
+          {genre}
+        </span>
+      )}
       {duration != null && (
-        <span className="movie-meta__span">{formatRuntime(duration)}</span>
+        <span className={`movie-meta__span movie-meta__span--${size}`}>
+          {formatRuntime(duration)}
+        </span>
       )}
     </div>
   );

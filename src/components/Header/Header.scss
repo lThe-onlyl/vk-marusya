@@ -8,11 +8,49 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+
+    @media (max-width: 1100px) {
+      display: grid;
+      grid-template-columns: 143px 1fr 120px;
+      gap: 80px;
+    }
+
+    @media (max-width: 900px) {
+      gap: 60px;
+    }
+
+    @media (max-width: 840px) {
+      display: flex;
+      gap: 0;
+    }
+  }
+
+  &__search {
+    position: relative;
+
+    @media (max-width: 840px) {
+      position: static;
+    }
+
+    .input-wrapper {
+      svg {
+        opacity: 0.5;
+      }
+
+      @media (max-width: 840px) {
+        display: none;
+      }
+    }
   }
 
   &__box {
     display: flex;
     gap: 40px;
+
+    @media (max-width: 1100px) {
+      display: block;
+    }
   }
 
   &__logo {
@@ -65,6 +103,10 @@
 
   &__input {
     width: 655px;
+
+    @media (max-width: 1100px) {
+      width: 100%;
+    }
   }
 
   &__list {
@@ -97,20 +139,28 @@
     &--button {
       display: none;
 
-      @media (max-width: 1100px) {
+      @media (max-width: 840px) {
         display: block;
       }
     }
   }
-}
 
-.input-wrapper {
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
 
-  svg {
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    .input-wrapper__input {
+      width: 100%;
+    }
   }
 
-  @media (max-width: 1100px) {
-    display: none;
+  &__shell {
+    position: relative;
+
+    width: 100%;
+    padding: 16px;
   }
 }

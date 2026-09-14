@@ -39,6 +39,7 @@ export function ModalItem({
             year={year}
             genre={genre}
             duration={duration}
+            size="small"
           />
         </div>
 
