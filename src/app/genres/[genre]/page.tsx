@@ -1,6 +1,6 @@
 import { getMoviesByGenre } from "@/api/movies";
 import { genreTitles } from "@/constants/genres";
-import { GenreMovies } from "@/components/GenreMovies/GenreMovies";
+import { GenreMovies } from "@/components/Genre/GenreMovies/GenreMovies";
 
 interface GenrePageProps {
   params: Promise<{

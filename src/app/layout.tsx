@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/Header/Header";
-import { Footer } from "@/components/Footer/Footer";
+import { Header } from "@/components/Layout/Header/Header";
+import { Footer } from "@/components/Layout/Footer/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 import "@/styles/_global.scss";
+import { FavoritesProvider } from "@/context/FavoritesContext";
+import { AuthModalHost } from "@/components/Auth/AuthModalHost/AuthModalHost";
 
 export const metadata: Metadata = {
   title: "Маруся",
@@ -16,13 +19,18 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
-        <div className="app">
-          <Header />
+        <AuthProvider>
+          <FavoritesProvider>
+            <div className="app">
+              <Header />
 
-          <main className="main">{children}</main>
+              <main className="main">{children}</main>
 
-          <Footer />
-        </div>
+              <Footer />
+            </div>
+            <AuthModalHost />
+          </FavoritesProvider>
+        </AuthProvider>
       </body>
     </html>
   );

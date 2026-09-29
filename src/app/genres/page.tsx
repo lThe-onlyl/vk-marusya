@@ -1,5 +1,5 @@
 import { getGenres } from "@/api/movies";
-import { GenreList } from "@/components/GenreList/GenreList";
+import { GenreList } from "@/components/Genre/GenreList/GenreList";
 
 export default async function Genres() {
   const genres = await getGenres();

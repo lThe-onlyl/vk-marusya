@@ -1,6 +1,6 @@
 import { getRandomMovie, getTopMovies } from "@/api/movies";
-import { RandomMovie } from "@/components/RandomMovie/RandomMovie";
-import { MovieList } from "@/components/MovieList/MovieList";
+import { RandomMovie } from "@/components/Movie/RandomMovie/RandomMovie";
+import { MovieList } from "@/components/Movie/MovieList/MovieList";
 
 export const dynamic = "force-dynamic";
 

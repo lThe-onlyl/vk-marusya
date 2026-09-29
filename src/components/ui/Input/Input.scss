@@ -26,9 +26,8 @@
   }
 
   &__input {
-
     color: $color-white;
-    background-color: var(--color-background-primary);
+    background-color: $color-cape-cod;
     padding: 16px;
     padding-left: 52px;
     border: 1px solid $color-cape-cod;

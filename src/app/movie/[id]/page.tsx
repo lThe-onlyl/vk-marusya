@@ -1,6 +1,6 @@
 import { getMovie } from "@/api/movies";
-import { MovieAbout } from "@/components/MovieAbout/MovieAbout";
-import { MovieHero } from "@/components/MovieHero/MovieHero";
+import { MovieAbout } from "@/components/Movie/MovieAbout/MovieAbout";
+import { MovieHero } from "@/components/Movie/MovieHero/MovieHero";
 
 interface MoviePageProps {
   params: Promise<{

@@ -1,0 +1,95 @@
+@use "../../../styles/helpers" as *;
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &__content {
+    position: relative;
+    padding: 64px 40px;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 24px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-bottom: 40px;
+  }
+
+  &__input {
+    background-color: $color-white;
+    color: $color-black;
+    border: 1px solid $color-black-40;
+
+    &::placeholder {
+      color: $color-black-40;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: -72px;
+    border-radius: 24px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    transition: color $transition-300;
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      color: $color-melrose;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__btn {
+    margin-top: 12px;
+
+    &--white {
+      margin: 0;
+      background-color: $color-white;
+      color: $color-black;
+    }
+  }
+
+  .input-wrapper {
+    &__icon {
+      color: $color-black-40;
+    }
+
+    &:hover,
+    &:focus-within {
+      .input-wrapper__icon {
+        color: $color-melrose;
+      }
+
+      .input-wrapper__input {
+        border-color: $color-melrose;
+        outline: none;
+      }
+    }
+  }
+}
