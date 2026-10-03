@@ -8,6 +8,12 @@
     font-size: 48px;
     line-height: 56px;
     color: $color-white;
+
+    @include vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 40px;
+    }
   }
 
   &__btn {
@@ -21,6 +27,12 @@
     outline: none;
     position: relative;
     transition: color $transition-300;
+
+    @include vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+      padding-left: 28px;
+    }
 
     &:hover,
     &:focus-visible {
@@ -51,6 +63,23 @@
         background-color: $color-heliotrope;
       }
     }
+
+    &--full {
+      padding-left: 0;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
+
+    &--short {
+      padding-left: 0;
+      display: none;
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
   }
 
   &__icon {
@@ -64,6 +93,10 @@
     display: flex;
     gap: 64px;
     margin-bottom: 72px;
+
+    @include vp-767 {
+      gap: 24px;
+    }
   }
 
   &__empty {

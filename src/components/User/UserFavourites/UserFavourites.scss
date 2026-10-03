@@ -1,0 +1,12 @@
+.movie-wrapper {
+  height: 488px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .movie-grid {
+    padding-top: 64px;
+  }
+}

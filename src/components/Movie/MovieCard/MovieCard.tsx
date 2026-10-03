@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Icon } from "../../ui/IconProps/IconProps";
 import "./MovieCard.scss";
 import Link from "next/link";
+import { useFavorites } from "@/context/FavoritesContext";
 
 interface MovieCardProps {
   title: string;
@@ -9,6 +12,7 @@ interface MovieCardProps {
   rank?: number;
   movieid: number;
   removable?: boolean;
+  onRemove?: (movieId: number) => void;
 }
 
 export function MovieCard({
@@ -17,10 +21,23 @@ export function MovieCard({
   rank,
   removable = false,
   movieid,
+  onRemove,
 }: MovieCardProps) {
+  const { toggleFavorite, removeFromFavorites } = useFavorites();
+
+  const handleFavoriteClick = async () => {
+    if (removable) {
+      await removeFromFavorites(movieid);
+      onRemove?.(movieid);
+      return;
+    }
+
+    await toggleFavorite(movieid);
+  };
+
   return (
-    <>
-      <Link href={`/movie/${movieid}`} className="movie-card">
+    <div className="movie-card">
+      <Link href={`/movie/${movieid}`} className="movie-card__link">
         {rank !== undefined && <span className="movie-card__rank">{rank}</span>}
 
         <Image
@@ -30,17 +47,18 @@ export function MovieCard({
           height={336}
           className="movie-card__img"
         />
-
-        {removable && (
-          <button
-            className="movie-card__remove"
-            type="button"
-            aria-label={`Удалить фильм «${title}» из избранного`}
-          >
-            <Icon name="icon-close" />
-          </button>
-        )}
       </Link>
-    </>
+
+      {removable && (
+        <button
+          className="movie-card__remove"
+          type="button"
+          aria-label={`Удалить фильм «${title}» из избранного`}
+          onClick={handleFavoriteClick}
+        >
+          <Icon name="icon-close" />
+        </button>
+      )}
+    </div>
   );
 }

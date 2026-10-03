@@ -147,6 +147,10 @@
       fill-opacity: 1;
     }
 
+    &::after {
+      content: none;
+    }
+
     &--button {
       display: none;
 

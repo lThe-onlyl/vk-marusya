@@ -38,6 +38,12 @@
     font-size: 18px;
     line-height: 24px;
     color: $color-white;
+
+    @include vp-767 {
+      font-size: 14px;
+      line-height: 20px;
+      color: $color-white-50;
+    }
   }
 
   &__title {
@@ -47,9 +53,18 @@
     font-size: 24px;
     color: $color-white;
     line-height: 32px;
+
+    @include vp-767 {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
   &__btn {
     max-width: 262px;
+
+    @media (max-width: 500px) {
+      max-width: 100%;
+    }
   }
 }

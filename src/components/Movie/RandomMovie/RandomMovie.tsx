@@ -39,6 +39,7 @@ export function RandomMovie({ initialMovie }: RandomMovieProps) {
         movie.backdropUrl ?? movie.posterUrl ?? "/images/movie-placeholder.png"
       }
       movieid={movie.id}
+      trailerYouTubeId={movie.trailerYouTubeId}
       resetMovie={handleResetMovie}
       showDetailsButton
     />

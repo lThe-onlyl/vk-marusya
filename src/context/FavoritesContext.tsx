@@ -13,6 +13,7 @@ interface FavoritesContextType {
   favoriteIds: number[];
   setFavoriteIds: (ids: number[]) => void;
   toggleFavorite: (movieId: number) => Promise<void>;
+  removeFromFavorites: (movieId: number) => Promise<void>;
   isFavorite: (movieId: number) => boolean;
 }
 
@@ -52,9 +53,26 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     [favoriteIds],
   );
 
+  const removeFromFavorites = useCallback(async (movieId: number) => {
+    try {
+      await removeFavorite(movieId);
+
+      setFavoriteIds((prev) => prev.filter((id) => id !== movieId));
+    } catch (error) {
+      console.error("Failed to remove favorite:", error);
+      throw error;
+    }
+  }, []);
+
   return (
     <FavoritesContext.Provider
-      value={{ favoriteIds, setFavoriteIds, toggleFavorite, isFavorite }}
+      value={{
+        favoriteIds,
+        setFavoriteIds,
+        toggleFavorite,
+        removeFromFavorites,
+        isFavorite,
+      }}
     >
       {children}
     </FavoritesContext.Provider>

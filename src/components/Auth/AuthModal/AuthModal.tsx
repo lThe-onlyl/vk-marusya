@@ -14,6 +14,7 @@ interface AuthModalProps {
 
 export function AuthModal({ onClose }: AuthModalProps) {
   const [mode, setMode] = useState<AuthMode>("login");
+  console.log("mode:", mode);
 
   const renderContent = () => {
     switch (mode) {

@@ -26,6 +26,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           movie.posterUrl ??
           "/images/movie-placeholder.png"
         }
+        trailerYouTubeId={movie.trailerYouTubeId}
         movieid={movie.id}
       />
 

@@ -12,6 +12,7 @@ interface UserInfoProps {
   email: string;
   onLogout: () => void;
   list: Movie[];
+  onRemoveFavorite: (movieId: number) => void;
 }
 
 export function UserInformation({
@@ -19,6 +20,7 @@ export function UserInformation({
   email,
   onLogout,
   list,
+  onRemoveFavorite,
 }: UserInfoProps) {
   const [mode, setMode] = useState<InfoMode>("userSettings");
 
@@ -28,7 +30,9 @@ export function UserInformation({
         return <UserSettings name={name} email={email} onLogout={onLogout} />;
 
       case "userFavorites":
-        return <UserFavourites list={list} />;
+        return (
+          <UserFavourites list={list} onRemoveFavorite={onRemoveFavorite} />
+        );
 
       default:
         return null;
@@ -48,7 +52,12 @@ export function UserInformation({
             onClick={() => setMode("userFavorites")}
           >
             <Icon className="user-information__icon" name="icon-heart" />
-            Избранные фильмы
+            <span className="user-information__btn user-information__btn--full">
+              Избранные фильмы
+            </span>
+            <span className="user-information__btn user-information__btn--short">
+              Избранное
+            </span>
           </button>
 
           <button
@@ -58,7 +67,12 @@ export function UserInformation({
             onClick={() => setMode("userSettings")}
           >
             <Icon className="user-information__icon" name="icon-user" />
-            Настройка аккаунта
+            <span className="user-information__btn user-information__btn--full">
+              Настройки аккаунта
+            </span>
+            <span className="user-information__btn user-information__btn--short">
+              Настройки
+            </span>
           </button>
         </div>
 

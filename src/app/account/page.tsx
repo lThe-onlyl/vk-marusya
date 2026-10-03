@@ -7,13 +7,14 @@ import { getFavorites } from "@/api/favorites";
 import { useAuth } from "@/context/AuthContext";
 import { UserInformation } from "@/components/User/UserInformation/UserInformation";
 import { Movie } from "@/types/Movie";
+import { useFavorites } from "@/context/FavoritesContext";
 
 export default function AccountPage() {
   const router = useRouter();
   const { user, isAuth, isLoading, setUser } = useAuth();
 
   const [favorites, setFavorites] = useState<Movie[]>([]);
-  const [isFavoritesLoading, setFavoritesLoading] = useState(true);
+  const { setFavoriteIds } = useFavorites();
 
   useEffect(() => {
     if (!isLoading && !isAuth) {
@@ -28,19 +29,19 @@ export default function AccountPage() {
 
     getFavorites()
       .then((data) => {
-        if (!isCancelled) setFavorites(data);
+        if (!isCancelled) {
+          setFavorites(data);
+          setFavoriteIds(data.map((movie) => movie.id));
+        }
       })
       .catch((error) => {
         console.error("Failed to load favorites:", error);
-      })
-      .finally(() => {
-        if (!isCancelled) setFavoritesLoading(false);
       });
 
     return () => {
       isCancelled = true;
     };
-  }, [isAuth]);
+  }, [isAuth, setFavoriteIds]);
 
   if (isLoading) {
     return <p>Загрузка...</p>;
@@ -59,12 +60,17 @@ export default function AccountPage() {
     }
   };
 
+  const handleRemoveFavorite = (movieId: number) => {
+    setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
+
   return (
     <UserInformation
       name={`${user.name} ${user.surname}`}
       email={user.email}
       onLogout={handleLogout}
       list={favorites}
+      onRemoveFavorite={handleRemoveFavorite}
     />
   );
 }

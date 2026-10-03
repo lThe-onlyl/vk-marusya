@@ -1,0 +1,68 @@
+@use "../../../styles/helpers" as *;
+
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.85);
+  animation: trailer-fade-in 0.2s ease;
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
+    background-color: $color-black;
+  }
+
+  &__iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: $color-white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color $transition-300;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-melrose;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 16px;
+
+    &__close {
+      top: -36px;
+    }
+  }
+}
+
+@keyframes trailer-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

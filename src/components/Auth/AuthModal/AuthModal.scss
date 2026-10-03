@@ -57,6 +57,11 @@
       outline: none;
       color: $color-melrose;
     }
+
+    @include vp-767 {
+      right: 8px;
+      background-color: transparent;
+    }
   }
 
   &__form {

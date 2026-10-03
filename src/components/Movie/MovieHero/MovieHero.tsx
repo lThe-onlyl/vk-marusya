@@ -1,13 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../../ui/Button/Button";
 import { Icon } from "../../ui/IconProps/IconProps";
 import { MovieMeta } from "../MovieMeta/MovieMeta";
+import { MovieTrailer } from "../MovieTrailer/MovieTrailer";
 import { useAuth } from "@/context/AuthContext";
-import "./MovieHero.scss";
 import { useFavorites } from "@/context/FavoritesContext";
+import "./MovieHero.scss";
 
 interface MovieHeroProps {
   rate: number;
@@ -18,6 +20,7 @@ interface MovieHeroProps {
   description: string;
   posterUrl: string;
   movieid: number;
+  trailerYouTubeId: string;
   resetMovie?: () => void;
   showDetailsButton?: boolean;
 }
@@ -31,11 +34,14 @@ export function MovieHero({
   description,
   posterUrl,
   movieid,
+  trailerYouTubeId,
   resetMovie,
   showDetailsButton,
 }: MovieHeroProps) {
   const { isAuth, openAuthModal } = useAuth();
   const { isFavorite, toggleFavorite } = useFavorites();
+
+  const [isTrailerOpen, setTrailerOpen] = useState(false);
 
   const inFavorites = isFavorite(movieid);
 
@@ -46,6 +52,9 @@ export function MovieHero({
     }
     toggleFavorite(movieid);
   };
+
+  const handleTrailerOpen = () => setTrailerOpen(true);
+  const handleTrailerClose = () => setTrailerOpen(false);
 
   return (
     <section className="movie-hero">
@@ -66,6 +75,7 @@ export function MovieHero({
               <Button
                 variant="primary"
                 className="movie-hero__button movie-hero__button--trailer"
+                onClick={handleTrailerOpen}
               >
                 Трейлер
               </Button>
@@ -91,7 +101,7 @@ export function MovieHero({
               >
                 <Icon
                   name={inFavorites ? "icon-heart-filled" : "icon-heart"}
-                  className={`movie-hero__icon ${inFavorites ? "movie-hero__icon--filled" : ""}`}
+                  className="movie-hero__icon"
                 />
               </Button>
 
@@ -116,6 +126,13 @@ export function MovieHero({
           />
         </div>
       </div>
+
+      {isTrailerOpen && (
+        <MovieTrailer
+          youtubeId={trailerYouTubeId}
+          onClose={handleTrailerClose}
+        />
+      )}
     </section>
   );
 }

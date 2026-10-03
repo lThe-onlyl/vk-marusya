@@ -1,10 +1,16 @@
 import { MovieGrid } from "@/components/Movie/MovieGrid/MovieGrid";
 import { Movie } from "@/types/Movie";
+import "./UserFavourites.scss";
+
 interface UserFavouritesProps {
   list: Movie[];
+  onRemoveFavorite: (movieId: number) => void;
 }
 
-export function UserFavourites({ list }: UserFavouritesProps) {
+export function UserFavourites({
+  list,
+  onRemoveFavorite,
+}: UserFavouritesProps) {
   if (list.length === 0) {
     return (
       <p className="user-information__empty">
@@ -13,5 +19,9 @@ export function UserFavourites({ list }: UserFavouritesProps) {
     );
   }
 
-  return <MovieGrid list={list} />;
+  return (
+    <div className="movie-wrapper">
+      <MovieGrid list={list} removable onRemoveFavorite={onRemoveFavorite} />
+    </div>
+  );
 }

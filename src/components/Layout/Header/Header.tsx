@@ -14,16 +14,9 @@ import { SearchModal } from "../../ui/SearchDropdown/SearchDropdown";
 import { useAuth } from "@/context/AuthContext";
 
 import "./Header.scss";
-import { AuthModal } from "../../Auth/AuthModal/AuthModal";
 
 export function Header() {
-  const {
-    user,
-    isLoading: isUserLoading,
-    isAuthModalOpen,
-    openAuthModal,
-    closeAuthModal,
-  } = useAuth();
+  const { user, isLoading: isUserLoading, openAuthModal } = useAuth();
 
   const pathname = usePathname();
 
@@ -181,14 +174,26 @@ export function Header() {
             </li>
 
             <li className="header__item">
-              <Link
-                className={`header__anchor ${
-                  pathname === "/account" ? "header__link--active" : ""
-                }`}
-                href="/account"
-              >
-                <Icon name="icon-account" />
-              </Link>
+              {isUserLoading ? null : user ? (
+                <Link
+                  className={`header__anchor ${
+                    pathname === "/account" ? "header__link--active" : ""
+                  }`}
+                  href="/account"
+                >
+                  <Icon name="icon-account" />
+                </Link>
+              ) : (
+                <button
+                  className={`header__anchor ${
+                    pathname === "/account" ? "header__link--active" : ""
+                  }`}
+                  type="button"
+                  onClick={openAuthModal}
+                >
+                  <Icon name="icon-account" />
+                </button>
+              )}
             </li>
           </ul>
 
@@ -213,8 +218,6 @@ export function Header() {
               </div>
             </div>
           )}
-
-          {isAuthModalOpen && <AuthModal onClose={closeAuthModal} />}
         </div>
       </div>
     </header>

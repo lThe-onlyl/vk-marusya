@@ -26,7 +26,18 @@ export async function addFavorite(movieId: number): Promise<void> {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to add to favorites");
+    const errorText = await response.text();
+
+    console.error("Add favorite failed:", {
+      status: response.status,
+      statusText: response.statusText,
+      body: errorText,
+      movieId,
+    });
+
+    throw new Error(
+      `Failed to add to favorites: ${response.status} ${response.statusText}`,
+    );
   }
 }
 
