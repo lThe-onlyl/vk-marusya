@@ -92,7 +92,7 @@
   &__box {
     display: flex;
     gap: 64px;
-    margin-bottom: 72px;
+    margin-bottom: 64px;
 
     @include vp-767 {
       gap: 24px;

@@ -87,6 +87,7 @@ export function Header() {
               className="header__logo"
               width={143}
               height={32}
+              loading="eager"
             />
           </Link>
 

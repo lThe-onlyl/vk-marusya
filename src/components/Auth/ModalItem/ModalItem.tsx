@@ -23,7 +23,7 @@ export function ModalItem({
   movieid,
 }: MovieProps) {
   return (
-    <Link href={`/movie/${movieid}`} className="modal-item">
+    <a href={`/movie/${movieid}`} className="modal-item">
       <Image
         src={posterUrl || "/images/movie-placeholder.jpg"}
         alt={`Постер фильма «${title}»`}
@@ -45,6 +45,6 @@ export function ModalItem({
 
         <h2 className="modal-item__title">{title}</h2>
       </div>
-    </Link>
+    </a>
   );
 }

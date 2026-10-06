@@ -68,6 +68,7 @@
   &__img {
     border-radius: 36px;
     height: 552px;
+    display: block;
 
     @media (max-width: 1350px) {
       margin-bottom: 24px;
